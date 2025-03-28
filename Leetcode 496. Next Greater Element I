@@ -1,0 +1,35 @@
+class Solution {
+private:
+int solve(vector<int>& nums2 , int n){
+    
+    int ans;
+    for(int i = 0 ; i < nums2.size() ; i++){
+        if(nums2[i] == n){
+            ans = i;
+            break;
+        }
+    }
+    return ans;
+}    
+public:
+    vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
+        
+        vector<int>ans(nums1.size());
+
+        for(int i = 0 ; i < nums1.size() ; i++){
+           
+            int n = solve(nums2 , nums1[i]);
+            int res = -1;
+            for(int j = n + 1 ; j < nums2.size() ; j++){
+
+                if(nums2[j] > nums1[i]){
+                     res = nums2[j];
+                     break;
+                }
+            }
+            ans[i] = res;
+        }
+
+        return ans;
+    }
+};
